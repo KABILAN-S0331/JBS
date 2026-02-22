@@ -1,0 +1,2053 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Jasmine 🌸</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a1a;
+            color: #fff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* ── Animated Gradient Background ── */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 25%, #0a0a1a 50%, #2a0a3e 75%, #0a0a1a 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -3;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* ── Stars ── */
+        .stars-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.2;
+                transform: scale(0.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        /* ── Floating Particles ── */
+        .particle {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            animation: floatUp var(--duration) linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            90% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* ── Purple Jasmine Flowers Background ── */
+        .jasmine-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .jasmine-flower {
+            position: absolute;
+            pointer-events: none;
+            animation: jasmineFall var(--fall-duration) linear infinite;
+            animation-delay: var(--fall-delay);
+            opacity: 0;
+            filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.4));
+        }
+
+        @keyframes jasmineFall {
+            0% {
+                transform: translateY(-80px) translateX(0px) rotate(0deg) scale(var(--flower-scale));
+                opacity: 0;
+            }
+
+            8% {
+                opacity: var(--flower-opacity);
+            }
+
+            25% {
+                transform: translateY(25vh) translateX(calc(var(--drift) * 0.5)) rotate(90deg) scale(var(--flower-scale));
+            }
+
+            50% {
+                transform: translateY(50vh) translateX(var(--drift)) rotate(180deg) scale(var(--flower-scale));
+            }
+
+            75% {
+                transform: translateY(75vh) translateX(calc(var(--drift) * 0.3)) rotate(270deg) scale(var(--flower-scale));
+            }
+
+            92% {
+                opacity: var(--flower-opacity);
+            }
+
+            100% {
+                transform: translateY(105vh) translateX(calc(var(--drift) * -0.2)) rotate(360deg) scale(var(--flower-scale));
+                opacity: 0;
+            }
+        }
+
+        /* Static ambient jasmine flowers scattered on the page */
+        .jasmine-ambient {
+            position: absolute;
+            pointer-events: none;
+            animation: jasmineGlow var(--glow-duration) ease-in-out infinite alternate;
+            animation-delay: var(--glow-delay);
+            filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.35));
+        }
+
+        @keyframes jasmineGlow {
+            0% {
+                opacity: var(--ambient-min);
+                transform: scale(var(--flower-scale)) rotate(var(--base-rotate));
+            }
+
+            100% {
+                opacity: var(--ambient-max);
+                transform: scale(calc(var(--flower-scale) * 1.08)) rotate(calc(var(--base-rotate) + 8deg));
+            }
+        }
+
+        /* ── Hero Section ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 105, 180, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.3);
+                opacity: 0.8;
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            background: rgba(255, 105, 180, 0.15);
+            border: 1px solid rgba(255, 105, 180, 0.3);
+            border-radius: 50px;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #ff9ecf;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease 0.3s both;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(40px, 10vw, 80px);
+            background: linear-gradient(135deg, #ff9ecf, #ff4fa3, #ff9ecf, #ffb6d9);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease infinite, fadeInUp 1s ease 0.5s both;
+            filter: drop-shadow(0 0 30px rgba(255, 105, 180, 0.4));
+        }
+
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-emoji {
+            font-size: 60px;
+            margin: 15px 0;
+            animation: bounce 2s ease infinite, fadeInUp 1s ease 0.7s both;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .typewriter-container {
+            margin-top: 20px;
+            max-width: 650px;
+            min-height: 80px;
+            font-size: 18px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.85);
+            animation: fadeInUp 1s ease 0.9s both;
+        }
+
+        .typewriter-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 20px;
+            background: #ff4fa3;
+            margin-left: 2px;
+            animation: blink 0.8s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* ── Buttons ── */
+        .btn-primary {
+            margin-top: 35px;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #ff4fa3, #ff6fb1);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 25px rgba(255, 79, 163, 0.4);
+            letter-spacing: 1px;
+            animation: fadeInUp 1s ease 1.1s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 40px rgba(255, 79, 163, 0.6);
+        }
+
+        /* ── Scroll Indicator ── */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            animation: fadeInUp 1s ease 1.5s both;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 24px;
+            height: 24px;
+            border-right: 2px solid rgba(255, 105, 180, 0.6);
+            border-bottom: 2px solid rgba(255, 105, 180, 0.6);
+            transform: rotate(45deg);
+            animation: scrollBounce 2s infinite;
+        }
+
+        @keyframes scrollBounce {
+
+            0%,
+            100% {
+                transform: rotate(45deg) translateY(0);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: rotate(45deg) translateY(10px);
+                opacity: 1;
+            }
+        }
+
+        /* ── Section Styling ── */
+        section {
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 5vw, 42px);
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ff9ecf, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff4fa3, #ff9ecf);
+            margin: 15px auto 30px;
+            border-radius: 3px;
+        }
+
+        /* ── Gallery ── */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .gallery-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(147, 51, 234, 0.1));
+            border: 1px solid rgba(255, 105, 180, 0.15);
+        }
+
+        .gallery-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(10, 10, 26, 0.9) 100%);
+            z-index: 1;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 2;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+        }
+
+        /* ── Placeholder for gallery images ── */
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a0a2e, #2a1040);
+            font-size: 60px;
+        }
+
+        .gallery-placeholder span {
+            font-size: 14px;
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ── Message Section ── */
+        .message-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .message-card {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 50px 40px;
+            background: rgba(255, 105, 180, 0.05);
+            border: 1px solid rgba(255, 105, 180, 0.15);
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            position: relative;
+        }
+
+        .message-card::before {
+            content: '❝';
+            position: absolute;
+            top: 15px;
+            left: 25px;
+            font-size: 60px;
+            color: rgba(255, 105, 180, 0.2);
+            font-family: serif;
+        }
+
+        .message-text {
+            font-size: 18px;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .message-author {
+            margin-top: 25px;
+            color: #ff9ecf;
+            font-weight: 600;
+        }
+
+        /* ── Question Section ── */
+        .question-section {
+            position: relative;
+        }
+
+        .question-card {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 50px 40px;
+            background: rgba(255, 105, 180, 0.05);
+            border: 1px solid rgba(255, 105, 180, 0.15);
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+        }
+
+        .question-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #ff9ecf;
+            margin-bottom: 10px;
+        }
+
+        .question-card p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            min-height: 60px;
+        }
+
+        .btn-yes {
+            padding: 14px 40px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #ff4fa3, #ff6fb1);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(255, 79, 163, 0.4);
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 35px rgba(255, 79, 163, 0.6);
+        }
+
+        .btn-no {
+            padding: 14px 40px;
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            border-radius: 50px;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        /* ── Celebration Overlay ── */
+        .celebration-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(10, 10, 26, 0.95);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .celebration-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .celebration-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(30px, 8vw, 60px);
+            color: #ff9ecf;
+            text-shadow: 0 0 40px rgba(255, 105, 180, 0.6);
+            animation: celebPulse 1s ease infinite;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @keyframes celebPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .celebration-sub {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 15px;
+        }
+
+
+
+        /* ── Wishes ── */
+        .wishes-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .wish-bubble {
+            padding: 12px 24px;
+            background: rgba(255, 105, 180, 0.08);
+            border: 1px solid rgba(255, 105, 180, 0.15);
+            border-radius: 50px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s;
+            cursor: default;
+            backdrop-filter: blur(10px);
+        }
+
+        .wish-bubble:hover {
+            background: rgba(255, 105, 180, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 105, 180, 0.2);
+        }
+
+        /* ── Footer ── */
+        footer {
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 105, 180, 0.1);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        footer .heart {
+            color: #ff4fa3;
+            display: inline-block;
+            animation: heartbeat 1.5s ease infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            14% {
+                transform: scale(1.3);
+            }
+
+            28% {
+                transform: scale(1);
+            }
+
+            42% {
+                transform: scale(1.3);
+            }
+
+            56% {
+                transform: scale(1);
+            }
+        }
+
+        /* ── Confetti Canvas ── */
+        canvas#confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* ── Reveal Animations ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Music Toggle ── */
+        .music-toggle {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 105, 180, 0.3);
+            background: rgba(10, 10, 26, 0.8);
+            backdrop-filter: blur(10px);
+            color: #ff9ecf;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 105, 180, 0.3);
+        }
+
+        .music-toggle.playing {
+            animation: musicPulse 1s ease infinite;
+        }
+
+        @keyframes musicPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 0 10px rgba(255, 105, 180, 0);
+            }
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                max-width: 350px;
+            }
+
+            .message-card {
+                padding: 35px 25px;
+            }
+
+
+        }
+
+        /* Popup Styling */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.4s;
+            z-index: 1000;
+        }
+
+        .popup.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .popup-content {
+            background: linear-gradient(135deg, #ffb6e6, #ffd6f6);
+            color: #333;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 0 40px rgba(255, 105, 180, 0.6);
+            animation: popupFade 0.5s ease;
+        }
+
+        .popup-content h2 {
+            font-family: 'Dancing Script', cursive;
+            margin-bottom: 15px;
+        }
+
+        .popup-btn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 25px;
+            background: #ff4fa3;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .popup-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(255, 79, 163, 0.5);
+        }
+
+        @keyframes popupFade {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* ══════════════ OPENING GAME OVERLAY ══════════════ */
+        .game-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #2a0a3e 100%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease;
+        }
+
+        .game-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .game-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(28px, 7vw, 48px);
+            color: #ff9ecf;
+            text-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+            margin-bottom: 8px;
+        }
+
+        .game-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* Tic Tac Toe Board */
+        .ttt-board {
+            display: grid;
+            grid-template-columns: repeat(3, 90px);
+            grid-template-rows: repeat(3, 90px);
+            gap: 6px;
+        }
+
+        .ttt-cell {
+            width: 90px;
+            height: 90px;
+            background: rgba(255, 105, 180, 0.08);
+            border: 1px solid rgba(255, 105, 180, 0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            user-select: none;
+        }
+
+        .ttt-cell:hover:not(.taken) {
+            background: rgba(255, 105, 180, 0.15);
+            transform: scale(1.05);
+        }
+
+        .ttt-cell.taken {
+            cursor: default;
+        }
+
+        .ttt-cell.x-mark {
+            color: #ff4fa3;
+        }
+
+        .ttt-cell.o-mark {
+            color: #a855f7;
+        }
+
+        .ttt-cell.win-cell {
+            background: rgba(255, 79, 163, 0.25);
+            border-color: #ff4fa3;
+            box-shadow: 0 0 25px rgba(255, 79, 163, 0.4);
+            animation: winPop 0.5s ease;
+        }
+
+        @keyframes winPop {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .ttt-status {
+            margin-top: 25px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            min-height: 28px;
+            text-align: center;
+        }
+
+        /* Win Message */
+        .win-message {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .win-message.show {
+            display: flex;
+        }
+
+        .win-caption {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(22px, 5vw, 34px);
+            color: #ff9ecf;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .win-emoji {
+            font-size: 60px;
+            animation: bounce 1.5s ease infinite;
+        }
+
+        .win-btn {
+            margin-top: 28px;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #ff4fa3, #a855f7);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 25px rgba(255, 79, 163, 0.4);
+            transition: all 0.3s;
+        }
+
+        .win-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 40px rgba(255, 79, 163, 0.6);
+        }
+
+        /* ══════════════ CAKE CUTTING OVERLAY ══════════════ */
+        .cake-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #2a0a3e 100%);
+            z-index: 9998;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .cake-overlay.active {
+            display: flex;
+        }
+
+        .cake-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cake-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(26px, 6vw, 42px);
+            color: #ff9ecf;
+            text-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .cake-instruction {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
+            margin-bottom: 25px;
+            font-weight: 300;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .cake-area {
+            position: relative;
+            width: 340px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+        }
+
+        .cake-emoji {
+            font-size: 130px;
+            filter: drop-shadow(0 0 30px rgba(255, 105, 180, 0.4));
+            transition: all 0.5s;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .cake-emoji.nudge-left {
+            transform: translate(-60%, -50%);
+        }
+
+        /* Cut slice */
+        .cake-slice {
+            font-size: 80px;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%) scale(0);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.5));
+        }
+
+        .cake-slice.visible {
+            transform: translateY(-50%) scale(1) rotate(5deg);
+            opacity: 1;
+        }
+
+        /* Knife */
+        .knife-drag {
+            font-size: 65px;
+            position: absolute;
+            right: -5px;
+            top: 15px;
+            cursor: grab;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+            animation: knifeHint 1.5s ease-in-out infinite;
+            z-index: 10;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        @keyframes knifeHint {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-30deg);
+            }
+
+            50% {
+                transform: translateY(-8px) rotate(-25deg);
+            }
+        }
+
+        .knife-drag.held {
+            cursor: grabbing;
+            animation: none;
+            position: fixed;
+            z-index: 10000;
+            pointer-events: none;
+            transition: none;
+        }
+
+        .knife-drag.done {
+            display: none;
+        }
+
+        /* Cut line effect */
+        .cut-line {
+            position: absolute;
+            width: 3px;
+            height: 0;
+            background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            left: 50%;
+            top: 20%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+            opacity: 0;
+            transition: all 0.4s;
+        }
+
+        .cut-line.active {
+            height: 60%;
+            opacity: 1;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .cut-line.fade {
+            opacity: 0;
+        }
+
+        /* Sparkles on cut */
+        .cut-sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #fde68a;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkleOut 0.8s ease forwards;
+        }
+
+        @keyframes sparkleOut {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(0) translate(var(--sx), var(--sy));
+                opacity: 0;
+            }
+        }
+
+        .cake-celebration {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            animation: fadeInUp 0.6s ease;
+            margin-top: 20px;
+        }
+
+        .cake-celebration.show {
+            display: flex;
+        }
+
+        .cake-celebration p {
+            font-size: 18px;
+            color: #ff9ecf;
+            margin-bottom: 5px;
+        }
+
+        .cake-proceed-btn {
+            margin-top: 25px;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #ff4fa3, #a855f7);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 25px rgba(255, 79, 163, 0.4);
+            transition: all 0.3s;
+        }
+
+        .cake-proceed-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 40px rgba(255, 79, 163, 0.6);
+        }
+
+        /* Main content hidden initially */
+        .main-content {
+            display: none;
+        }
+
+        .main-content.revealed {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ══════════════ TIC TAC TOE GAME ══════════════ -->
+    <div class="game-overlay" id="gameOverlay">
+        <div id="tttGame">
+            <h1 class="game-title">Let's Play a Game 🎮</h1>
+            <p class="game-subtitle">Beat me at Tic-Tac-Toe to unlock your surprise!</p>
+            <div class="ttt-board" id="tttBoard">
+                <div class="ttt-cell" data-i="0" onclick="playerMove(0)"></div>
+                <div class="ttt-cell" data-i="1" onclick="playerMove(1)"></div>
+                <div class="ttt-cell" data-i="2" onclick="playerMove(2)"></div>
+                <div class="ttt-cell" data-i="3" onclick="playerMove(3)"></div>
+                <div class="ttt-cell" data-i="4" onclick="playerMove(4)"></div>
+                <div class="ttt-cell" data-i="5" onclick="playerMove(5)"></div>
+                <div class="ttt-cell" data-i="6" onclick="playerMove(6)"></div>
+                <div class="ttt-cell" data-i="7" onclick="playerMove(7)"></div>
+                <div class="ttt-cell" data-i="8" onclick="playerMove(8)"></div>
+            </div>
+            <p class="ttt-status" id="tttStatus">Your turn! You are ✖️</p>
+        </div>
+
+        <div class="win-message" id="winMessage">
+            <div class="win-emoji">🎉</div>
+            <p class="win-caption">"You are not as idiot as I thought"</p>
+            <p style="color:rgba(255,255,255,0.5); margin-top:10px; font-size:14px;">Okay okay, you won... now the real
+                surprise awaits 🎂</p>
+            <button class="win-btn" onclick="showCakeScreen()">Show Me! 🎂</button>
+        </div>
+    </div>
+
+    <!-- ══════════════ CAKE CUTTING ══════════════ -->
+    <div class="cake-overlay" id="cakeOverlay">
+        <h1 class="cake-title">Time to Cut the Cake! 🎂</h1>
+        <p class="cake-instruction" id="cakeInstruction">👆 Hold the knife and drag it across the cake!</p>
+        <div class="cake-area" id="cakeArea">
+            <div class="cake-emoji" id="cakeEmoji">🎂</div>
+            <div class="cake-slice" id="cakeSlice">🍰</div>
+            <div class="cut-line" id="cutLine"></div>
+            <div class="knife-drag" id="knifeDrag">🔪</div>
+        </div>
+        <div class="cake-celebration" id="cakeCelebration">
+            <p>🎉 Happy Birthday Jasmine! 🎉</p>
+            <button class="cake-proceed-btn" onclick="revealMainPage()">Happy 18 Jas🐟</button>
+        </div>
+    </div>
+
+    <!-- ══════════════ MAIN CONTENT (hidden initially) ══════════════ -->
+    <div class="main-content" id="mainContent">
+
+        <!-- Background -->
+        <div class="bg-gradient"></div>
+        <div class="stars-container" id="starsContainer"></div>
+        <div class="jasmine-container" id="jasmineContainer"></div>
+
+        <!-- Confetti Canvas -->
+        <canvas id="confetti"></canvas>
+
+        <!-- Audio -->
+        <audio id="bgMusic" loop preload="auto">
+            <source src="music.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- Music Toggle -->
+        <button class="music-toggle" id="musicToggle" title="Toggle Music">🎵</button>
+
+        <!-- ═══════════════ HERO ═══════════════ -->
+        <div class="hero">
+            <div class="hero-glow"></div>
+            <div class="hero-badge">✨ A Special Day ✨</div>
+            <div class="hero-emoji">🎂</div>
+            <h1>Happy Birthday Jasmine 🌸</h1>
+            <div class="typewriter-container">
+                <span id="typewriter"></span>
+                <span class="typewriter-cursor"></span>
+            </div>
+            <button class="btn-primary" onclick="scrollToSection('gallery')">
+                Enter Your Universe ✨
+            </button>
+            <div class="scroll-indicator">
+                <span></span>
+            </div>
+        </div>
+
+
+        <!-- ═══════════════ GALLERY ═══════════════ -->
+        <section id="gallery" class="reveal">
+            <h2 class="section-title">Moments That Shine 🌙</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">A little gallery of memories</p>
+            <div class="gallery-grid">
+                <div class="gallery-card">
+                    <img src="J5.jpeg" alt="Beautiful memory">
+                    <div class="gallery-caption">✨ Beautiful memory</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="J4.jpeg" alt="Lovely moment">
+                    <div class="gallery-caption">💖 Another lovely moment</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="J2.jpeg" alt="Simply radiant">
+                    <div class="gallery-caption">🌸 Simply radiant</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ MESSAGE ═══════════════ -->
+        <section class="message-section reveal">
+            <h2 class="section-title">A Little Note For You 💌</h2>
+            <div class="section-divider"></div>
+            <div class="message-card">
+                <p class="message-text">
+                    On this beautiful day, I just want you to know how amazing you are.
+                    Your laughter lights up every room, your kindness touches every heart,
+                    and your spirit inspires everyone around you. May this year bring you
+                    everything your wonderful soul deserves — endless joy, love, adventures,
+                    and all the happiness in the world. Keep shining, Jasmine! 🌸
+                </p>
+                <p class="message-author">— From someone who thinks you're absolutely wonderful 💗</p>
+            </div>
+        </section>
+
+
+        <!-- ═══════════════ QUESTION ═══════════════ -->
+        <section class="question-section reveal">
+            <div class="question-card">
+                <h2>One More Thing... 🎁</h2>
+                <p>Do you want to see a surprise? 🤫</p>
+                <div class="btn-group" id="btnGroup">
+                    <button class="btn-yes" onclick="window.location.href='surprise.html'">Yes! Show me 💖</button>
+                    <button class="btn-no" id="noBtn" onclick="handleNo()">Maybe later 🙈</button>
+                </div>
+                <p id="wrongAnswer" style="color:#ff9ecf; margin-top:15px; font-weight:600; display:none;"></p>
+            </div>
+        </section>
+
+        <!-- ═══════════════ FOOTER ═══════════════ -->
+        <footer class="reveal">
+            <p>Stay glowing. Stay soft. Stay Jasmine ✨</p>
+            <p style="margin-top: 10px;">Made with <span class="heart">♥</span> just for you</p>
+        </footer>
+
+        <!-- ═══════════════ CELEBRATION OVERLAY ═══════════════ -->
+        <div class="celebration-overlay" id="celebOverlay">
+            <div class="celebration-text">Of course you are! 🥰</div>
+            <p class="celebration-sub">The cutest, most wonderful birthday girl! 🎉</p>
+            <button class="btn-primary" style="animation:none; margin-top:30px;" onclick="closeCelebration()">Aww Thank
+                You
+                💕</button>
+        </div>
+
+        <script>
+            /* ═══════════════ STARS GENERATOR ═══════════════ */
+            (function generateStars() {
+                const container = document.getElementById('starsContainer');
+                for (let i = 0; i < 120; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    const size = Math.random() * 3 + 1;
+                    star.style.cssText = `
+            width: ${size}px; height: ${size}px;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            --duration: ${Math.random() * 3 + 2}s;
+            animation-delay: ${Math.random() * 3}s;
+        `;
+                    container.appendChild(star);
+                }
+            })();
+
+            /* ═══════════════ FLOATING PARTICLES ═══════════════ */
+            (function generateParticles() {
+                const colors = ['#ff9ecf', '#ff4fa3', '#ffb6d9', '#c084fc', '#f472b6'];
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    const size = Math.random() * 6 + 3;
+                    particle.style.cssText = `
+            width: ${size}px; height: ${size}px;
+            left: ${Math.random() * 100}%;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            --duration: ${Math.random() * 15 + 10}s;
+            animation-delay: ${Math.random() * 10}s;
+        `;
+                    document.body.appendChild(particle);
+                }
+            })();
+
+            /* ═══════════════ PURPLE JASMINE FLOWERS ═══════════════ */
+            (function generateJasmineFlowers() {
+                const container = document.getElementById('jasmineContainer');
+                const purpleShades = [
+                    { fill: '#a855f7', stroke: '#9333ea' },  // vivid purple
+                    { fill: '#c084fc', stroke: '#a855f7' },  // light purple
+                    { fill: '#7c3aed', stroke: '#6d28d9' },  // deep violet
+                    { fill: '#d8b4fe', stroke: '#c084fc' },  // lavender
+                    { fill: '#8b5cf6', stroke: '#7c3aed' },  // amethyst
+                    { fill: '#e9d5ff', stroke: '#d8b4fe' },  // pale purple
+                    { fill: '#a78bfa', stroke: '#8b5cf6' },  // soft violet
+                    { fill: '#9333ea', stroke: '#7e22ce' },  // royal purple
+                ];
+
+                function createJasmineSVG(shade, size) {
+                    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svg.setAttribute('width', size);
+                    svg.setAttribute('height', size);
+                    svg.setAttribute('viewBox', '0 0 100 100');
+
+                    // 5-petal jasmine flower
+                    const petalCount = 5;
+                    const cx = 50, cy = 50;
+                    for (let i = 0; i < petalCount; i++) {
+                        const angle = (i * 360 / petalCount) * (Math.PI / 180);
+                        const px = cx + Math.cos(angle) * 22;
+                        const py = cy + Math.sin(angle) * 22;
+
+                        const petal = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+                        petal.setAttribute('cx', px);
+                        petal.setAttribute('cy', py);
+                        petal.setAttribute('rx', '16');
+                        petal.setAttribute('ry', '10');
+                        petal.setAttribute('fill', shade.fill);
+                        petal.setAttribute('stroke', shade.stroke);
+                        petal.setAttribute('stroke-width', '0.8');
+                        petal.setAttribute('opacity', '0.85');
+                        petal.setAttribute('transform', `rotate(${i * 360 / petalCount} ${px} ${py})`);
+                        svg.appendChild(petal);
+                    }
+
+                    // center of flower
+                    const center = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    center.setAttribute('cx', cx);
+                    center.setAttribute('cy', cy);
+                    center.setAttribute('r', '7');
+                    center.setAttribute('fill', '#fde68a');
+                    center.setAttribute('stroke', '#fbbf24');
+                    center.setAttribute('stroke-width', '1');
+                    svg.appendChild(center);
+
+                    // tiny dots on center
+                    for (let d = 0; d < 5; d++) {
+                        const da = (d * 360 / 5) * (Math.PI / 180);
+                        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                        dot.setAttribute('cx', cx + Math.cos(da) * 3.5);
+                        dot.setAttribute('cy', cy + Math.sin(da) * 3.5);
+                        dot.setAttribute('r', '1.2');
+                        dot.setAttribute('fill', '#f59e0b');
+                        svg.appendChild(dot);
+                    }
+
+                    return svg;
+                }
+
+                // Falling jasmine flowers
+                const fallingCount = 35;
+                for (let i = 0; i < fallingCount; i++) {
+                    const shade = purpleShades[Math.floor(Math.random() * purpleShades.length)];
+                    const size = Math.random() * 28 + 18;
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'jasmine-flower';
+                    wrapper.style.left = Math.random() * 100 + '%';
+                    wrapper.style.setProperty('--fall-duration', (Math.random() * 18 + 14) + 's');
+                    wrapper.style.setProperty('--fall-delay', (Math.random() * 20) + 's');
+                    wrapper.style.setProperty('--drift', (Math.random() * 120 - 60) + 'px');
+                    wrapper.style.setProperty('--flower-scale', (Math.random() * 0.5 + 0.6).toFixed(2));
+                    wrapper.style.setProperty('--flower-opacity', (Math.random() * 0.3 + 0.45).toFixed(2));
+                    wrapper.appendChild(createJasmineSVG(shade, size));
+                    container.appendChild(wrapper);
+                }
+
+                // Ambient static jasmine flowers scattered around the page
+                const ambientCount = 25;
+                for (let i = 0; i < ambientCount; i++) {
+                    const shade = purpleShades[Math.floor(Math.random() * purpleShades.length)];
+                    const size = Math.random() * 32 + 14;
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'jasmine-ambient';
+                    wrapper.style.left = Math.random() * 96 + '%';
+                    wrapper.style.top = Math.random() * 100 + '%';
+                    wrapper.style.setProperty('--glow-duration', (Math.random() * 4 + 3) + 's');
+                    wrapper.style.setProperty('--glow-delay', (Math.random() * 5) + 's');
+                    wrapper.style.setProperty('--flower-scale', (Math.random() * 0.5 + 0.5).toFixed(2));
+                    wrapper.style.setProperty('--base-rotate', Math.floor(Math.random() * 360) + 'deg');
+                    wrapper.style.setProperty('--ambient-min', (Math.random() * 0.15 + 0.15).toFixed(2));
+                    wrapper.style.setProperty('--ambient-max', (Math.random() * 0.2 + 0.4).toFixed(2));
+                    wrapper.appendChild(createJasmineSVG(shade, size));
+                    container.appendChild(wrapper);
+                }
+            })();
+
+            /* ═══════════════ TYPEWRITER ═══════════════ */
+            const messages = [
+                "The world became brighter the day you were born. ✨",
+                "Your smile is literal sunshine. ☀️",
+                "Today, the universe celebrates YOU. 🌸"
+            ];
+            let msgIndex = 0, charIndex = 0;
+            const typewriterEl = document.getElementById('typewriter');
+
+            function typeWriter() {
+                if (charIndex < messages[msgIndex].length) {
+                    typewriterEl.textContent += messages[msgIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, 45);
+                } else if (msgIndex < messages.length - 1) {
+                    setTimeout(() => {
+                        typewriterEl.textContent = '';
+                        charIndex = 0;
+                        msgIndex++;
+                        typeWriter();
+                    }, 2000);
+                }
+            }
+            setTimeout(typeWriter, 800);
+
+            /* ═══════════════ SCROLL ═══════════════ */
+            function scrollToSection(id) {
+                document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            }
+
+            /* ═══════════════ REVEAL ON SCROLL ═══════════════ */
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            /* ═══════════════ NO BUTTON HANDLER ═══════════════ */
+            let noClickCount = 0;
+            function handleNo() {
+                noClickCount++;
+                const msg = document.getElementById('wrongAnswer');
+                if (noClickCount === 1) {
+                    msg.textContent = 'Wrong answer! Try again 😄';
+                    msg.style.display = 'block';
+                    msg.style.animation = 'fadeInUp 0.4s ease';
+                } else {
+                    msg.textContent = 'Okay bye bye No button! 👋';
+                    document.getElementById('noBtn').style.transition = 'all 0.5s ease';
+                    document.getElementById('noBtn').style.transform = 'scale(0)';
+                    document.getElementById('noBtn').style.opacity = '0';
+                    setTimeout(() => { document.getElementById('noBtn').style.display = 'none'; }, 500);
+                }
+            }
+
+            /* ═══════════════ CONFETTI ═══════════════ */
+            const canvas = document.getElementById('confetti');
+            const ctx = canvas.getContext('2d');
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            let confettiPieces = [];
+            let confettiActive = false;
+            const confettiColors = ['#ff9ecf', '#ff4fa3', '#ffb6d9', '#c084fc', '#f472b6', '#fbbf24', '#34d399', '#60a5fa', '#a78bfa', '#fb7185'];
+
+            function createConfetti() {
+                confettiPieces = [];
+                for (let i = 0; i < 300; i++) {
+                    confettiPieces.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height - canvas.height,
+                        w: Math.random() * 10 + 5,
+                        h: Math.random() * 6 + 3,
+                        color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
+                        speed: Math.random() * 3 + 2,
+                        angle: Math.random() * Math.PI * 2,
+                        spin: (Math.random() - 0.5) * 0.2,
+                        drift: (Math.random() - 0.5) * 2,
+                        opacity: 1
+                    });
+                }
+                confettiActive = true;
+                animateConfetti();
+            }
+
+            function animateConfetti() {
+                if (!confettiActive) return;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                let alive = false;
+                confettiPieces.forEach(p => {
+                    if (p.y > canvas.height + 50) return;
+                    alive = true;
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.angle);
+                    ctx.globalAlpha = p.opacity;
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                    ctx.restore();
+
+                    p.y += p.speed;
+                    p.x += p.drift;
+                    p.angle += p.spin;
+                    if (p.y > canvas.height * 0.8) {
+                        p.opacity -= 0.02;
+                    }
+                });
+
+                if (alive) {
+                    requestAnimationFrame(animateConfetti);
+                } else {
+                    confettiActive = false;
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+
+            /* ═══════════════ CELEBRATE ═══════════════ */
+            function celebrate() {
+                createConfetti();
+                document.getElementById('celebOverlay').classList.add('active');
+            }
+
+            function closeCelebration() {
+                document.getElementById('celebOverlay').classList.remove('active');
+            }
+
+
+            /* ═══════════════ MUSIC TOGGLE ═══════════════ */
+            const bgMusic = document.getElementById('bgMusic');
+            const musicToggle = document.getElementById('musicToggle');
+            let isPlaying = false;
+
+            musicToggle.addEventListener('click', () => {
+                if (isPlaying) {
+                    bgMusic.pause();
+                    musicToggle.textContent = '🔇';
+                    musicToggle.classList.remove('playing');
+                } else {
+                    bgMusic.play().catch(() => { });
+                    musicToggle.textContent = '🎵';
+                    musicToggle.classList.add('playing');
+                }
+                isPlaying = !isPlaying;
+            });
+
+            // Try autoplay on first interaction
+            document.addEventListener('click', function autoplayOnce() {
+                if (!isPlaying) {
+                    bgMusic.play().then(() => {
+                        isPlaying = true;
+                        musicToggle.textContent = '🎵';
+                        musicToggle.classList.add('playing');
+                    }).catch(() => { });
+                }
+                document.removeEventListener('click', autoplayOnce);
+            }, { once: true });
+            /* ═══════════════ FINAL POPUP ═══════════════ */
+            let popupShown = false;
+
+            function showFinalPopup() {
+                if (popupShown) return;
+                popupShown = true;
+                document.getElementById('finalPopup').classList.add('show');
+            }
+
+            function closePopup() {
+                document.getElementById('finalPopup').classList.remove('show');
+            }
+
+            // Show popup when returning from surprise page
+            if (window.location.search.includes('from=surprise') ||
+                (document.referrer && document.referrer.includes('surprise.html'))) {
+                // Small delay so the page loads first
+                setTimeout(showFinalPopup, 800);
+                // Clean up the URL without reloading
+                history.replaceState(null, '', window.location.pathname);
+            }
+
+            // Also show popup on exit intent (mouse leaves the page)
+            document.addEventListener('mouseout', function (e) {
+                if (e.clientY <= 0 && !popupShown) {
+                    showFinalPopup();
+                }
+            });
+
+            // For mobile: show when page visibility changes (user switches tabs/closes)
+            document.addEventListener('visibilitychange', function () {
+                if (document.visibilityState === 'visible' && !popupShown) {
+                    // User came back to the tab
+                    const visited = sessionStorage.getItem('visitedSurprise');
+                    if (visited) {
+                        showFinalPopup();
+                    }
+                }
+            });
+
+            /* ═══════════════ TIC TAC TOE GAME ═══════════════ */
+            const board = ['', '', '', '', '', '', '', '', ''];
+            const cells = document.querySelectorAll('.ttt-cell');
+            let gameActive = true;
+            let moveCount = 0;
+
+            const winCombos = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                [0, 4, 8], [2, 4, 6]
+            ];
+
+            function checkWin(mark) {
+                for (const combo of winCombos) {
+                    if (combo.every(i => board[i] === mark)) return combo;
+                }
+                return null;
+            }
+
+            function getEmpty() {
+                return board.map((v, i) => v === '' ? i : -1).filter(i => i !== -1);
+            }
+
+            function playerMove(i) {
+                if (!gameActive || board[i] !== '') return;
+
+                // Place player X
+                board[i] = 'X';
+                cells[i].textContent = '✖️';
+                cells[i].classList.add('taken', 'x-mark');
+                moveCount++;
+
+                // Check player win
+                const playerWin = checkWin('X');
+                if (playerWin) {
+                    gameActive = false;
+                    playerWin.forEach(idx => cells[idx].classList.add('win-cell'));
+                    document.getElementById('tttStatus').textContent = 'You won! 🎉';
+                    setTimeout(() => {
+                        document.getElementById('tttGame').style.display = 'none';
+                        document.getElementById('winMessage').classList.add('show');
+                    }, 1200);
+                    return;
+                }
+
+                // Check draw
+                if (getEmpty().length === 0) {
+                    document.getElementById('tttStatus').textContent = 'Draw! Let\'s restart...';
+                    setTimeout(resetBoard, 1500);
+                    return;
+                }
+
+                // AI move (deliberately bad to let user win)
+                document.getElementById('tttStatus').textContent = 'Hmm... thinking 🤔';
+                setTimeout(() => {
+                    const aiMove = getBadMove();
+                    if (aiMove !== -1) {
+                        board[aiMove] = 'O';
+                        cells[aiMove].textContent = '⭕';
+                        cells[aiMove].classList.add('taken', 'o-mark');
+                        moveCount++;
+                    }
+
+                    // Check if AI somehow won (shouldn't happen but just in case)
+                    if (checkWin('O')) {
+                        document.getElementById('tttStatus').textContent = 'Oops... Let\'s try again!';
+                        setTimeout(resetBoard, 1500);
+                        return;
+                    }
+
+                    if (getEmpty().length === 0) {
+                        document.getElementById('tttStatus').textContent = 'Draw! Let\'s restart...';
+                        setTimeout(resetBoard, 1500);
+                        return;
+                    }
+
+                    document.getElementById('tttStatus').textContent = 'Your turn! ✖️';
+                }, 600);
+            }
+
+            // AI that deliberately makes bad moves so the user wins
+            function getBadMove() {
+                const empty = getEmpty();
+                if (empty.length === 0) return -1;
+
+                // AVOID blocking the player - find the WORST move
+                // First, check if player can win next move - DON'T block it
+                // Instead, pick a cell that doesn't help AI at all
+
+                // Find cells that are NOT blocking player wins
+                const nonBlockingMoves = empty.filter(i => {
+                    // Check if this cell would block a player win
+                    for (const combo of winCombos) {
+                        const marks = combo.map(idx => board[idx]);
+                        if (combo.includes(i) && marks.filter(m => m === 'X').length === 2 && marks.filter(m => m === '').length === 1) {
+                            return false; // This would block - avoid it!
+                        }
+                    }
+                    return true;
+                });
+
+                // Also avoid winning moves for AI
+                const badMoves = (nonBlockingMoves.length > 0 ? nonBlockingMoves : empty).filter(i => {
+                    for (const combo of winCombos) {
+                        const marks = combo.map(idx => board[idx]);
+                        if (combo.includes(i) && marks.filter(m => m === 'O').length === 2 && marks.filter(m => m === '').length === 1) {
+                            return false; // This would win - avoid it!
+                        }
+                    }
+                    return true;
+                });
+
+                const choices = badMoves.length > 0 ? badMoves : empty;
+                // Pick corners last (they're strategic) - prefer edges
+                const edges = choices.filter(i => [1, 3, 5, 7].includes(i));
+                if (edges.length > 0) return edges[Math.floor(Math.random() * edges.length)];
+
+                return choices[Math.floor(Math.random() * choices.length)];
+            }
+
+            function resetBoard() {
+                for (let i = 0; i < 9; i++) {
+                    board[i] = '';
+                    cells[i].textContent = '';
+                    cells[i].className = 'ttt-cell';
+                }
+                moveCount = 0;
+                gameActive = true;
+                document.getElementById('tttStatus').textContent = 'Your turn! You are ✖️';
+            }
+
+            /* ═══════════════ CAKE CUTTING (Drag Interaction) ═══════════════ */
+            let isDragging = false;
+            let cakeCut = false;
+            const knife = document.getElementById('knifeDrag');
+            const cakeArea = document.getElementById('cakeArea');
+            const cakeEl = document.getElementById('cakeEmoji');
+            const cakeSlice = document.getElementById('cakeSlice');
+            const cutLine = document.getElementById('cutLine');
+            let dragStartY = 0;
+            let hasCrossedCake = false;
+
+            function showCakeScreen() {
+                document.getElementById('gameOverlay').classList.add('hidden');
+                setTimeout(() => {
+                    document.getElementById('gameOverlay').style.display = 'none';
+                    document.getElementById('cakeOverlay').classList.add('active');
+                }, 800);
+            }
+
+            // Get position from mouse or touch event
+            function getPos(e) {
+                if (e.touches && e.touches.length > 0) {
+                    return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                }
+                return { x: e.clientX, y: e.clientY };
+            }
+
+            // Start dragging
+            function startDrag(e) {
+                if (cakeCut) return;
+                e.preventDefault();
+                isDragging = true;
+                hasCrossedCake = false;
+                const pos = getPos(e);
+                dragStartY = pos.y;
+                knife.classList.add('held');
+                knife.style.left = (pos.x - 35) + 'px';
+                knife.style.top = (pos.y - 20) + 'px';
+                knife.style.transform = 'rotate(-30deg)';
+                document.getElementById('cakeInstruction').textContent = '⬇️ Now drag down through the cake!';
+            }
+
+            // Move knife while dragging
+            function moveDrag(e) {
+                if (!isDragging || cakeCut) return;
+                e.preventDefault();
+                const pos = getPos(e);
+                knife.style.left = (pos.x - 35) + 'px';
+                knife.style.top = (pos.y - 20) + 'px';
+
+                // Check if knife is over the cake
+                const cakeRect = cakeEl.getBoundingClientRect();
+                const knifeX = pos.x;
+                const knifeY = pos.y;
+
+                // If knife enters the cake area from above and exits below
+                if (knifeX > cakeRect.left && knifeX < cakeRect.right) {
+                    if (knifeY > cakeRect.top && knifeY < cakeRect.bottom) {
+                        // Knife is on the cake - rotate it to cutting angle
+                        knife.style.transform = 'rotate(0deg)';
+                    }
+                    if (knifeY > cakeRect.bottom && dragStartY < cakeRect.top + 50) {
+                        // Knife dragged through the cake from top to bottom!
+                        hasCrossedCake = true;
+                        performCut();
+                    }
+                }
+            }
+
+            // End drag
+            function endDrag(e) {
+                if (!isDragging || cakeCut) return;
+                isDragging = false;
+
+                if (!hasCrossedCake) {
+                    // Didn't cut - reset knife
+                    knife.classList.remove('held');
+                    knife.style.left = '';
+                    knife.style.top = '';
+                    knife.style.transform = '';
+                    knife.style.position = '';
+                    document.getElementById('cakeInstruction').textContent = '👆 Hold the knife and drag it down through the cake!';
+                }
+            }
+
+            // Perform the cut
+            function performCut() {
+                if (cakeCut) return;
+                cakeCut = true;
+                isDragging = false;
+
+                // Hide knife
+                knife.classList.add('done');
+
+                // Show cut line flash
+                cutLine.classList.add('active');
+                setTimeout(() => cutLine.classList.add('fade'), 500);
+
+                // Spawn sparkles
+                const areaRect = cakeArea.getBoundingClientRect();
+                for (let i = 0; i < 12; i++) {
+                    const spark = document.createElement('div');
+                    spark.className = 'cut-sparkle';
+                    spark.style.left = (areaRect.width / 2 + (Math.random() * 40 - 20)) + 'px';
+                    spark.style.top = (areaRect.height * 0.3 + Math.random() * areaRect.height * 0.4) + 'px';
+                    spark.style.setProperty('--sx', (Math.random() * 60 - 30) + 'px');
+                    spark.style.setProperty('--sy', (Math.random() * 60 - 30) + 'px');
+                    spark.style.background = ['#fde68a', '#ff9ecf', '#c084fc', '#fff'][Math.floor(Math.random() * 4)];
+                    cakeArea.appendChild(spark);
+                }
+
+                // Nudge cake left, show slice on right
+                setTimeout(() => {
+                    cakeEl.classList.add('nudge-left');
+                }, 300);
+
+                setTimeout(() => {
+                    cakeSlice.classList.add('visible');
+                }, 600);
+
+                setTimeout(() => {
+                    document.getElementById('cakeCelebration').classList.add('show');
+                }, 1200);
+            }
+
+            // Mouse events
+            knife.addEventListener('mousedown', startDrag);
+            document.addEventListener('mousemove', moveDrag);
+            document.addEventListener('mouseup', endDrag);
+
+            // Touch events
+            knife.addEventListener('touchstart', startDrag, { passive: false });
+            document.addEventListener('touchmove', moveDrag, { passive: false });
+            document.addEventListener('touchend', endDrag);
+
+            function revealMainPage() {
+                document.getElementById('cakeOverlay').classList.add('hidden');
+                setTimeout(() => {
+                    document.getElementById('cakeOverlay').style.display = 'none';
+                    document.getElementById('mainContent').classList.add('revealed');
+                    // Trigger reveal animations
+                    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+                    window.scrollTo(0, 0);
+                }, 800);
+            }
+        </script>
+
+        <!-- ═══════════════ FINAL SURPRISE POPUP ═══════════════ -->
+        <div id="finalPopup" class="popup">
+            <div class="popup-content">
+                <h2>🌸 One Last Thing, Jasmine 🌸</h2>
+                <p>
+                    You are genuinely one of the softest, kindest souls.
+                    I hope this year brings you unexpected happiness,
+                    peaceful days, and endless reasons to smile.
+                </p>
+                <p style="margin-top:10px;">
+                    Happy Birthday once again 🤍✨
+                </p>
+                <button onclick="closePopup()" class="popup-btn">Close 💖</button>
+            </div>
+        </div>
+
+    </div> <!-- end main-content -->
+
+</body>
+
+</html>

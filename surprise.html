@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise for Jasmine 🌸</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a1a;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ── Background ── */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 25%, #0a0a1a 50%, #2a0a3e 75%, #0a0a1a 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -3;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* ── Stars ── */
+        .stars-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.2;
+                transform: scale(0.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        /* ── Jasmine flowers ── */
+        .jasmine-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .jasmine-flower {
+            position: absolute;
+            pointer-events: none;
+            animation: jasmineFall var(--fall-duration) linear infinite;
+            animation-delay: var(--fall-delay);
+            opacity: 0;
+            filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.4));
+        }
+
+        @keyframes jasmineFall {
+            0% {
+                transform: translateY(-80px) translateX(0px) rotate(0deg) scale(var(--flower-scale));
+                opacity: 0;
+            }
+
+            8% {
+                opacity: var(--flower-opacity);
+            }
+
+            25% {
+                transform: translateY(25vh) translateX(calc(var(--drift) * 0.5)) rotate(90deg) scale(var(--flower-scale));
+            }
+
+            50% {
+                transform: translateY(50vh) translateX(var(--drift)) rotate(180deg) scale(var(--flower-scale));
+            }
+
+            75% {
+                transform: translateY(75vh) translateX(calc(var(--drift) * 0.3)) rotate(270deg) scale(var(--flower-scale));
+            }
+
+            92% {
+                opacity: var(--flower-opacity);
+            }
+
+            100% {
+                transform: translateY(105vh) translateX(calc(var(--drift) * -0.2)) rotate(360deg) scale(var(--flower-scale));
+                opacity: 0;
+            }
+        }
+
+        /* ── Page Header ── */
+        .page-header {
+            text-align: center;
+            padding: 50px 20px 30px;
+        }
+
+        .page-header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(32px, 8vw, 56px);
+            background: linear-gradient(135deg, #c084fc, #a855f7, #d8b4fe);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease infinite;
+            filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.4));
+        }
+
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .page-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #a855f7, #c084fc);
+            margin: 15px auto 0;
+            border-radius: 3px;
+        }
+
+        /* ── Photo Grid ── */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 30px;
+        }
+
+        /* ── Photo Frame ── */
+        .photo-frame {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(147, 51, 234, 0.15));
+            border: 2px solid rgba(168, 85, 247, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .photo-frame::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 30%, rgba(10, 10, 26, 0.85) 100%);
+            z-index: 1;
+            transition: all 0.3s;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-frame:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(168, 85, 247, 0.5);
+            box-shadow: 0 20px 60px rgba(168, 85, 247, 0.3);
+        }
+
+        .photo-frame:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Active / Playing state */
+        .photo-frame.playing {
+            border-color: #a855f7;
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.5), 0 0 80px rgba(168, 85, 247, 0.2);
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 40px rgba(168, 85, 247, 0.5), 0 0 80px rgba(168, 85, 247, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 0 60px rgba(168, 85, 247, 0.7), 0 0 100px rgba(168, 85, 247, 0.3);
+            }
+        }
+
+        /* ── Frame Info ── */
+        .frame-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 25px 20px 20px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .frame-caption {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        .frame-song {
+            font-size: 12px;
+            color: rgba(168, 85, 247, 0.8);
+            margin-top: 4px;
+            font-weight: 300;
+        }
+
+        /* ── Play Icon ── */
+        .play-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(168, 85, 247, 0.3);
+            border: 2px solid rgba(168, 85, 247, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .play-icon::after {
+            content: '▶';
+            font-size: 14px;
+            color: #d8b4fe;
+            margin-left: 2px;
+        }
+
+        .photo-frame.playing .play-icon {
+            background: rgba(168, 85, 247, 0.6);
+            border-color: #c084fc;
+            animation: musicBounce 1s ease infinite;
+        }
+
+        .photo-frame.playing .play-icon::after {
+            content: '⏸';
+            margin-left: 0;
+        }
+
+        @keyframes musicBounce {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* ── Now Playing Bar ── */
+        .now-playing {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 26, 0.95);
+            border-top: 1px solid rgba(168, 85, 247, 0.3);
+            backdrop-filter: blur(20px);
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 100;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .now-playing.visible {
+            transform: translateY(0);
+        }
+
+        .now-playing-icon {
+            font-size: 20px;
+            animation: musicSpin 2s linear infinite;
+        }
+
+        @keyframes musicSpin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .now-playing-info {
+            flex: 1;
+        }
+
+        .now-playing-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #d8b4fe;
+        }
+
+        .now-playing-caption {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .now-playing-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 20px;
+        }
+
+        .now-playing-bars span {
+            width: 4px;
+            background: #a855f7;
+            border-radius: 2px;
+            animation: barDance 0.8s ease-in-out infinite;
+        }
+
+        .now-playing-bars span:nth-child(1) {
+            height: 8px;
+            animation-delay: 0s;
+        }
+
+        .now-playing-bars span:nth-child(2) {
+            height: 16px;
+            animation-delay: 0.15s;
+        }
+
+        .now-playing-bars span:nth-child(3) {
+            height: 10px;
+            animation-delay: 0.3s;
+        }
+
+        .now-playing-bars span:nth-child(4) {
+            height: 18px;
+            animation-delay: 0.45s;
+        }
+
+        @keyframes barDance {
+
+            0%,
+            100% {
+                transform: scaleY(0.5);
+            }
+
+            50% {
+                transform: scaleY(1.2);
+            }
+        }
+
+        /* ── Back Button ── */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 22px;
+            border-radius: 50px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            background: rgba(10, 10, 26, 0.8);
+            backdrop-filter: blur(10px);
+            color: #d8b4fe;
+            font-size: 14px;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .back-btn:hover {
+            background: rgba(168, 85, 247, 0.2);
+            transform: translateX(-3px);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+        }
+
+        /* ── Placeholder ── */
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a0a2e, #2a1040);
+            font-size: 50px;
+        }
+
+        .photo-placeholder span {
+            font-size: 13px;
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .photo-grid {
+                grid-template-columns: 1fr;
+                max-width: 380px;
+                padding: 0 20px;
+            }
+
+            .page-header {
+                padding: 40px 20px 20px;
+            }
+
+            .now-playing {
+                padding: 12px 15px;
+            }
+        }
+
+        /* ── Fade in ── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ═ Lightbox Modal ═ */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 200;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .lightbox-backdrop.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-content {
+            position: relative;
+            z-index: 201;
+            max-width: 420px;
+            width: 100%;
+            border-radius: 28px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a0a2e, #2a1040);
+            border: 2px solid rgba(168, 85, 247, 0.4);
+            box-shadow: 0 0 60px rgba(168, 85, 247, 0.4), 0 20px 80px rgba(0, 0, 0, 0.6);
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: none;
+        }
+
+        .lightbox-overlay.active .lightbox-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .lightbox-img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            display: block;
+        }
+
+        .lightbox-info {
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .lightbox-caption {
+            font-size: 18px;
+            font-weight: 600;
+            color: #d8b4fe;
+        }
+
+        .lightbox-song {
+            font-size: 13px;
+            color: rgba(168, 85, 247, 0.7);
+            margin-top: 3px;
+        }
+
+        .lightbox-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 24px;
+        }
+
+        .lightbox-bars span {
+            width: 4px;
+            background: #a855f7;
+            border-radius: 2px;
+            animation: barDance 0.8s ease-in-out infinite;
+        }
+
+        .lightbox-bars span:nth-child(1) {
+            height: 10px;
+            animation-delay: 0s;
+        }
+
+        .lightbox-bars span:nth-child(2) {
+            height: 20px;
+            animation-delay: 0.15s;
+        }
+
+        .lightbox-bars span:nth-child(3) {
+            height: 12px;
+            animation-delay: 0.3s;
+        }
+
+        .lightbox-bars span:nth-child(4) {
+            height: 22px;
+            animation-delay: 0.45s;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(168, 85, 247, 0.4);
+            transform: scale(1.1);
+        }
+
+        /* Blur the page content when lightbox is open */
+        body.lightbox-open .photo-grid,
+        body.lightbox-open .page-header,
+        body.lightbox-open .back-btn {
+            filter: blur(8px);
+            transition: filter 0.4s ease;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="bg-gradient"></div>
+    <div class="stars-container" id="starsContainer"></div>
+    <div class="jasmine-container" id="jasmineContainer"></div>
+
+    <!-- Back Button -->
+    <a href="index.html?from=surprise" class="back-btn">← Back</a>
+
+    <!-- Header -->
+    <div class="page-header fade-in">
+        <h1>Happy B'day Lady STR 🎁</h1>
+        <p>Tap on each photo to hear a special song 🎵</p>
+        <div class="section-divider"></div>
+    </div>
+
+    <!-- Photo Grid -->
+    <div class="photo-grid">
+
+        <div class="photo-frame fade-in" style="animation-delay: 0.2s" onclick="playMusic(0, this)" data-song="JS1.mp3">
+            <img src="1.jpeg" alt="">
+            <div class="frame-info">
+                <div>
+                    <div class="frame-caption">💜 Anbil Aval</div>
+                    <div class="frame-song">🎵 Vinnai Thaandi Varuvaaya</div>
+                </div>
+                <div class="play-icon"></div>
+            </div>
+        </div>
+
+        <div class="photo-frame fade-in" style="animation-delay: 0.4s" onclick="playMusic(1, this)"
+            data-song="JS2.mp3">
+            <img src="J2.jpeg" alt="Memory 2">
+            <div class="frame-info">
+                <div>
+                    <div class="frame-caption">💜 Jasmine Ennum Pen</div>
+                    <div class="frame-song">🎵 Kadhal valarthen</div>
+                </div>
+                <div class="play-icon"></div>
+            </div>
+        </div>
+
+        <div class="photo-frame fade-in" style="animation-delay: 0.6s" onclick="playMusic(2, this)"
+            data-song="J3.mp3">
+            <img src="J3.jpeg" alt="Memory 3">
+            <div class="frame-info">
+                <div>
+                    <div class="frame-caption">💜 Siripazhagii</div>
+                    <div class="frame-song">🎵 Eppo nee</div>
+                </div>
+                <div class="play-icon"></div>
+            </div>
+        </div>
+
+        <div class="photo-frame fade-in" style="animation-delay: 0.8s" onclick="playMusic(3, this)"
+            data-song="J4.mp3">
+            <img src="J4.jpeg" alt="Memory 4">
+            <div class="frame-info">
+                <div>
+                    <div class="frame-caption">💜 Jasssssssuhhh</div>
+                    <div class="frame-song">🎵Manmadhane nee</div>
+                </div>
+                <div class="play-icon"></div>
+            </div>
+        </div>
+
+        <div class="photo-frame fade-in" style="animation-delay: 1.0s" onclick="playMusic(4, this)"
+            data-song="JS5.mp3">
+            <img src="J5.jpeg" alt="Memory 5">
+            <div class="frame-info">
+                <div>
+                    <div class="frame-caption">💜 Lady STR</div>
+                    <div class="frame-song">🎵 I a little star</div>
+                </div>
+                <div class="play-icon"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Now Playing Bar -->
+    <div class="now-playing" id="nowPlaying">
+        <div class="now-playing-icon">💿</div>
+        <div class="now-playing-info">
+            <div class="now-playing-title" id="nowPlayingTitle">—</div>
+            <div class="now-playing-caption" id="nowPlayingCaption">Tap a photo to play</div>
+        </div>
+        <div class="now-playing-bars">
+            <span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-backdrop" id="lightboxBackdrop" onclick="closeLightbox()"></div>
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+            <img class="lightbox-img" id="lightboxImg" src="" alt="">
+            <div class="lightbox-info">
+                <div>
+                    <div class="lightbox-caption" id="lightboxCaption"></div>
+                    <div class="lightbox-song" id="lightboxSong"></div>
+                </div>
+                <div class="lightbox-bars">
+                    <span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dynamic Audio Player -->
+    <audio id="audioPlayer" preload="auto"></audio>
+
+    <script>
+        /* ═══════════════ STARS ═══════════════ */
+        // Mark that user visited surprise page (for mobile popup trigger)
+        sessionStorage.setItem('visitedSurprise', 'true');
+        (function generateStars() {
+            const container = document.getElementById('starsContainer');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 3 + 1;
+                star.style.cssText = `
+                    width: ${size}px; height: ${size}px;
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    --duration: ${Math.random() * 3 + 2}s;
+                    animation-delay: ${Math.random() * 3}s;
+                `;
+                container.appendChild(star);
+            }
+        })();
+
+        /* ═══════════════ JASMINE FLOWERS ═══════════════ */
+        (function generateJasmineFlowers() {
+            const container = document.getElementById('jasmineContainer');
+            const purpleShades = [
+                { fill: '#a855f7', stroke: '#9333ea' },
+                { fill: '#c084fc', stroke: '#a855f7' },
+                { fill: '#7c3aed', stroke: '#6d28d9' },
+                { fill: '#d8b4fe', stroke: '#c084fc' },
+                { fill: '#8b5cf6', stroke: '#7c3aed' },
+                { fill: '#e9d5ff', stroke: '#d8b4fe' },
+                { fill: '#a78bfa', stroke: '#8b5cf6' },
+                { fill: '#9333ea', stroke: '#7e22ce' },
+            ];
+
+            function createJasmineSVG(shade, size) {
+                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svg.setAttribute('width', size);
+                svg.setAttribute('height', size);
+                svg.setAttribute('viewBox', '0 0 100 100');
+                const cx = 50, cy = 50;
+                for (let i = 0; i < 5; i++) {
+                    const angle = (i * 72) * (Math.PI / 180);
+                    const px = cx + Math.cos(angle) * 22;
+                    const py = cy + Math.sin(angle) * 22;
+                    const petal = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+                    petal.setAttribute('cx', px);
+                    petal.setAttribute('cy', py);
+                    petal.setAttribute('rx', '16');
+                    petal.setAttribute('ry', '10');
+                    petal.setAttribute('fill', shade.fill);
+                    petal.setAttribute('stroke', shade.stroke);
+                    petal.setAttribute('stroke-width', '0.8');
+                    petal.setAttribute('opacity', '0.85');
+                    petal.setAttribute('transform', `rotate(${i * 72} ${px} ${py})`);
+                    svg.appendChild(petal);
+                }
+                const center = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                center.setAttribute('cx', cx);
+                center.setAttribute('cy', cy);
+                center.setAttribute('r', '7');
+                center.setAttribute('fill', '#fde68a');
+                center.setAttribute('stroke', '#fbbf24');
+                center.setAttribute('stroke-width', '1');
+                svg.appendChild(center);
+                return svg;
+            }
+
+            for (let i = 0; i < 25; i++) {
+                const shade = purpleShades[Math.floor(Math.random() * purpleShades.length)];
+                const size = Math.random() * 28 + 18;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'jasmine-flower';
+                wrapper.style.left = Math.random() * 100 + '%';
+                wrapper.style.setProperty('--fall-duration', (Math.random() * 18 + 14) + 's');
+                wrapper.style.setProperty('--fall-delay', (Math.random() * 20) + 's');
+                wrapper.style.setProperty('--drift', (Math.random() * 120 - 60) + 'px');
+                wrapper.style.setProperty('--flower-scale', (Math.random() * 0.5 + 0.6).toFixed(2));
+                wrapper.style.setProperty('--flower-opacity', (Math.random() * 0.3 + 0.45).toFixed(2));
+                wrapper.appendChild(createJasmineSVG(shade, size));
+                container.appendChild(wrapper);
+            }
+        })();
+
+        /* ═══════════════ MUSIC PLAYER ═══════════════ */
+        const songNames = ['Vinnai thaandi varuvaya', 'Kadhal valarthen', 'Eppo nee', 'Manmadhane nee', 'I a little star'];
+        const captions = ['Anbil Aval', 'Jasmine Ennum Pen', 'Siripazhagii', 'Jasssssssuhhh', 'Lady STR'];
+        let currentlyPlaying = -1;
+        let currentFrame = null;
+        const audioPlayer = document.getElementById('audioPlayer');
+
+        function playMusic(index, frameEl) {
+            const allFrames = document.querySelectorAll('.photo-frame');
+            const imgSrc = frameEl.querySelector('img').src;
+            const songSrc = frameEl.getAttribute('data-song');
+
+            // If clicking the same frame that's open, close it
+            if (currentlyPlaying === index) {
+                closeLightbox();
+                return;
+            }
+
+            // Stop current audio
+            audioPlayer.pause();
+            audioPlayer.currentTime = 0;
+
+            // Remove playing class from all frames
+            allFrames.forEach(f => f.classList.remove('playing'));
+
+            // Set up lightbox
+            document.getElementById('lightboxImg').src = imgSrc;
+            document.getElementById('lightboxCaption').textContent = captions[index];
+            document.getElementById('lightboxSong').textContent = '🎵 ' + songNames[index];
+
+            // Open lightbox
+            document.body.classList.add('lightbox-open');
+            document.getElementById('lightboxBackdrop').classList.add('active');
+            document.getElementById('lightboxOverlay').classList.add('active');
+
+            // Play the song from data-song attribute
+            audioPlayer.src = songSrc;
+            audioPlayer.play().catch(() => { });
+            frameEl.classList.add('playing');
+            currentlyPlaying = index;
+            currentFrame = frameEl;
+
+            // Update now playing bar
+            document.getElementById('nowPlayingTitle').textContent = '🎵 ' + songNames[index];
+            document.getElementById('nowPlayingCaption').textContent = captions[index];
+            document.getElementById('nowPlaying').classList.add('visible');
+
+            // When song ends
+            audioPlayer.onended = function () {
+                frameEl.classList.remove('playing');
+                document.getElementById('nowPlaying').classList.remove('visible');
+                currentlyPlaying = -1;
+                currentFrame = null;
+            };
+        }
+
+        function closeLightbox() {
+            document.body.classList.remove('lightbox-open');
+            document.getElementById('lightboxBackdrop').classList.remove('active');
+            document.getElementById('lightboxOverlay').classList.remove('active');
+
+            // Stop audio
+            audioPlayer.pause();
+            audioPlayer.currentTime = 0;
+
+            if (currentFrame) {
+                currentFrame.classList.remove('playing');
+            }
+            const allFrames = document.querySelectorAll('.photo-frame');
+            allFrames.forEach(f => f.classList.remove('playing'));
+            document.getElementById('nowPlaying').classList.remove('visible');
+            currentlyPlaying = -1;
+            currentFrame = null;
+        }
+    </script>
+
+</body>
+
+</html>
