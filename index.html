@@ -36,6 +36,7 @@
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
             z-index: -3;
+            will-change: background-position;
         }
 
         @keyframes gradientShift {
@@ -1408,10 +1409,12 @@
         </div>
 
         <script>
+            const isMobile = window.innerWidth < 768;
+
             /* ═══════════════ STARS GENERATOR ═══════════════ */
             (function generateStars() {
                 const container = document.getElementById('starsContainer');
-                for (let i = 0; i < 120; i++) {
+                for (let i = 0; i < (isMobile ? 50 : 120); i++) {
                     const star = document.createElement('div');
                     star.className = 'star';
                     const size = Math.random() * 3 + 1;
@@ -1429,7 +1432,7 @@
             /* ═══════════════ FLOATING PARTICLES ═══════════════ */
             (function generateParticles() {
                 const colors = ['#ff9ecf', '#ff4fa3', '#ffb6d9', '#c084fc', '#f472b6'];
-                for (let i = 0; i < 20; i++) {
+                for (let i = 0; i < (isMobile ? 8 : 20); i++) {
                     const particle = document.createElement('div');
                     particle.className = 'particle';
                     const size = Math.random() * 6 + 3;
@@ -1510,7 +1513,7 @@
                 }
 
                 // Falling jasmine flowers
-                const fallingCount = 35;
+                const fallingCount = isMobile ? 12 : 35;
                 for (let i = 0; i < fallingCount; i++) {
                     const shade = purpleShades[Math.floor(Math.random() * purpleShades.length)];
                     const size = Math.random() * 28 + 18;
@@ -1527,7 +1530,7 @@
                 }
 
                 // Ambient static jasmine flowers scattered around the page
-                const ambientCount = 25;
+                const ambientCount = isMobile ? 10 : 25;
                 for (let i = 0; i < ambientCount; i++) {
                     const shade = purpleShades[Math.floor(Math.random() * purpleShades.length)];
                     const size = Math.random() * 32 + 14;
@@ -1622,7 +1625,7 @@
 
             function createConfetti() {
                 confettiPieces = [];
-                for (let i = 0; i < 300; i++) {
+                for (let i = 0; i < (isMobile ? 100 : 300); i++) {
                     confettiPieces.push({
                         x: Math.random() * canvas.width,
                         y: Math.random() * canvas.height - canvas.height,
